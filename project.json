@@ -41,8 +41,14 @@
   "expressionLanguage": "CSharp",
   "entryPoints": [
     {
+      "filePath": "ProcessWork.xaml",
+      "uniqueId": "19c4de37-3785-4549-a021-1ae778802212",
+      "input": [],
+      "output": []
+    },
+    {
       "filePath": "Main.xaml",
-      "uniqueId": "2f5de001-eca0-47e7-9880-149102fe54ac",
+      "uniqueId": "21afc4f8-619a-4113-9045-062429bb93b5",
       "input": [],
       "output": []
     }

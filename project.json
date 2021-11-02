@@ -3,6 +3,7 @@
   "description": "JCI Template based off Robotic Enterprise Framework",
   "main": "Main.xaml",
   "dependencies": {
+    "Microsoft.Activities.Extensions": "[2.0.6.9]",
     "Newtonsoft.Json": "[12.0.3]",
     "UiPath.Excel.Activities": "[2.11.0-preview]",
     "UiPath.System.Activities": "[21.6.1-preview]",

@@ -1,7 +1,7 @@
 {
   "name": "Process Template",
   "description": "JCI Template based off Robotic Enterprise Framework",
-  "main": "Main.xaml",
+  "main": "1 - Main.xaml",
   "dependencies": {
     "Microsoft.Activities.Extensions": "[2.0.6.9]",
     "Newtonsoft.Json": "[12.0.3]",
@@ -43,14 +43,14 @@
   "expressionLanguage": "CSharp",
   "entryPoints": [
     {
-      "filePath": "ProcessWork.xaml",
-      "uniqueId": "19c4de37-3785-4549-a021-1ae778802212",
+      "filePath": "1 - Main.xaml",
+      "uniqueId": "939ef612-32ed-468f-843d-57019912f41c",
       "input": [],
       "output": []
     },
     {
-      "filePath": "Main.xaml",
-      "uniqueId": "21afc4f8-619a-4113-9045-062429bb93b5",
+      "filePath": "3.1 - Performer_Framework.xaml",
+      "uniqueId": "5366ce0e-0169-475e-abe7-adf456142983",
       "input": [],
       "output": []
     }

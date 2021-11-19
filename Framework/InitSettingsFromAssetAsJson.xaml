@@ -4,7 +4,7 @@
     <x:Property Name="out_ConfigDictionary" Type="OutArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>1423,1290</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1342,1598</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -83,7 +83,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="InitSettingsFromJson" sap:VirtualizedContainerService.HintSize="526,1125" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="InitSettingsFromJson" sap:VirtualizedContainerService.HintSize="526,1433" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="configJson" />
     </Sequence.Variables>
@@ -124,7 +124,7 @@
     <If sap2010:Annotation.AnnotationText="If one of the mandatory config values is missing in JSON, throw an exception" DisplayName="If - Minimum configuration missing" sap:VirtualizedContainerService.HintSize="484,272" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
-          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_12" xml:space="preserve">!(out_ConfigDictionary.ContainsKey("OrchestratorQueueName") &amp;&amp;
+          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_13" xml:space="preserve">!(out_ConfigDictionary.ContainsKey("OrchestratorQueueName") &amp;&amp;
 out_ConfigDictionary.ContainsKey("BusinessProcessName") &amp;&amp;
 out_ConfigDictionary.ContainsKey("ExceptionScreenshotsFolderPath"))</mca:CSharpValue>
         </InArgument>
@@ -141,6 +141,25 @@ out_ConfigDictionary.ContainsKey("ExceptionScreenshotsFolderPath"))</mca:CSharpV
           <InArgument x:TypeArguments="s:Exception">
             <mca:CSharpValue x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="CSharpValue`1_7" xml:space="preserve">new ArgumentException(@"One or more of the following arguments is missing: 
 	OrchestratorQueueName, BusinessProcessName, ExceptionScreenshotsFolderPath.")</mca:CSharpValue>
+          </InArgument>
+        </Throw>
+      </If.Then>
+    </If>
+    <If sap2010:Annotation.AnnotationText="" DisplayName="If - Screenshots path is relative" sap:VirtualizedContainerService.HintSize="484,268" sap2010:WorkflowViewState.IdRef="If_3">
+      <If.Condition>
+        <InArgument x:TypeArguments="x:Boolean">
+          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_14">!Path.IsPathRooted(out_ConfigDictionary["ExceptionScreenshotsFolderPath"].ToString())</mca:CSharpValue>
+        </InArgument>
+      </If.Condition>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Throw sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_2">
+          <InArgument x:TypeArguments="s:Exception">
+            <mca:CSharpValue x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="CSharpValue`1_15">new ArgumentException(@"Argument ExceptionScreenshotsFolderPath must represent an absolute path.")</mca:CSharpValue>
           </InArgument>
         </Throw>
       </If.Then>

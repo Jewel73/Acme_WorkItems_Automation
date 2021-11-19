@@ -1,0 +1,1 @@
+Store here templates, mapping files and similar.

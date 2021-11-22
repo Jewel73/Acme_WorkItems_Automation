@@ -1,10 +1,10 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="InitSettingsFromJson" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="InitSettingsFromJson" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:maes="clr-namespace:Microsoft.Activities.Extensions.Statements;assembly=Microsoft.Activities.Extensions" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="out_Config" Type="OutArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_ConfigAssetName" Type="InArgument(x:String)" />
+    <x:Property Name="out_ConfigDictionary" Type="OutArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>880,825</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1342,1598</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -37,6 +37,10 @@
       <x:String>System.ComponentModel</x:String>
       <x:String>System.Collections.Specialized</x:String>
       <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>Microsoft.Activities.Extensions.Statements</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -74,9 +78,11 @@
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="InitSettingsFromJson" sap:VirtualizedContainerService.HintSize="486,536" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="InitSettingsFromJson" sap:VirtualizedContainerService.HintSize="526,1214" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="configJson" />
     </Sequence.Variables>
@@ -85,7 +91,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Minimum config structure:&#xD;&#xA;{&#xD;&#xA;&quot;OrchestratorQueueName&quot;: &quot;QueueName&quot;,&#xD;&#xA;&quot;logF_BusinessProcessName&quot;: &quot;BusinessProcessName&quot;,&#xD;&#xA;&quot;MaxRetryNumber&quot;: 3,&#xD;&#xA;&quot;ExScreenshotsFolderPath&quot;: &quot;Exceptions_Screenshots&quot;,&#xD;&#xA;&quot;LogMessage_GetTransactionData&quot;: &quot;Processing Transaction Number: &quot;,&#xD;&#xA;&quot;LogMessage_GetTransactionDataError&quot;: &quot;Error getting transaction data for Transaction Number: &quot;,&#xD;&#xA;&quot;LogMessage_Success&quot;: &quot;Transaction Successful.&quot;,&#xD;&#xA;&quot;LogMessage_BusinessRuleException&quot;: &quot;Business rule exception.&quot;,&#xD;&#xA;&quot;LogMessage_ApplicationException&quot;: &quot;System exception.&quot;&#xD;&#xA;}" DisplayName="Get Asset" sap:VirtualizedContainerService.HintSize="444,344" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Minimum config structure:&#xA;{&#xA;&quot;OrchestratorQueueName&quot;: &quot;QueueName&quot;,&#xA;&quot;BusinessProcessName&quot;: &quot;BusinessProcessName&quot;,&#xA;&quot;ExceptionScreenshotsFolderPath&quot;: &quot;Exceptions_Screenshots&quot;&#xA;}" DisplayName="Get Asset" sap:VirtualizedContainerService.HintSize="484,239" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
       <ui:GetRobotAsset.AssetName>
         <InArgument x:TypeArguments="x:String">
           <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">in_ConfigAssetName</mca:CSharpValue>
@@ -102,10 +108,10 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetRobotAsset>
-    <Assign sap:VirtualizedContainerService.HintSize="444,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">
-          <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_3">out_Config</mca:CSharpReference>
+          <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_3">out_ConfigDictionary</mca:CSharpReference>
         </OutArgument>
       </Assign.To>
       <Assign.Value>
@@ -114,5 +120,76 @@
         </InArgument>
       </Assign.Value>
     </Assign>
+    <If sap2010:Annotation.AnnotationText="If one of the mandatory config values is missing in JSON, throw an exception" DisplayName="If - Minimum configuration missing" sap:VirtualizedContainerService.HintSize="484,272" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Condition>
+        <InArgument x:TypeArguments="x:Boolean">
+          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_13" xml:space="preserve">!(out_ConfigDictionary.ContainsKey("OrchestratorQueueName") &amp;&amp;
+out_ConfigDictionary.ContainsKey("BusinessProcessName") &amp;&amp;
+out_ConfigDictionary.ContainsKey("ExceptionScreenshotsFolderPath"))</mca:CSharpValue>
+        </InArgument>
+      </If.Condition>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Throw sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_1">
+          <InArgument x:TypeArguments="s:Exception">
+            <mca:CSharpValue x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="CSharpValue`1_7" xml:space="preserve">new ArgumentException(@"One or more of the following arguments is missing: 
+	OrchestratorQueueName, BusinessProcessName, ExceptionScreenshotsFolderPath.")</mca:CSharpValue>
+          </InArgument>
+        </Throw>
+      </If.Then>
+    </If>
+    <If sap2010:Annotation.AnnotationText="" DisplayName="If - Screenshots path is relative" sap:VirtualizedContainerService.HintSize="484,268" sap2010:WorkflowViewState.IdRef="If_3">
+      <If.Condition>
+        <InArgument x:TypeArguments="x:Boolean">
+          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_14">!Path.IsPathRooted(out_ConfigDictionary["ExceptionScreenshotsFolderPath"].ToString())</mca:CSharpValue>
+        </InArgument>
+      </If.Condition>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Throw sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_2">
+          <InArgument x:TypeArguments="s:Exception">
+            <mca:CSharpValue x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="CSharpValue`1_15">new ArgumentException(@"Argument ExceptionScreenshotsFolderPath must represent an absolute path.")</mca:CSharpValue>
+          </InArgument>
+        </Throw>
+      </If.Then>
+    </If>
+    <If sap2010:Annotation.AnnotationText="If maximum number of retries has not been provided through asset JSON, set a default value" DisplayName="If - MaxRetryNumber not set" sap:VirtualizedContainerService.HintSize="484,123" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Condition>
+        <InArgument x:TypeArguments="x:Boolean">
+          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">!out_ConfigDictionary.ContainsKey("MaxRetryNumber")</mca:CSharpValue>
+        </InArgument>
+      </If.Condition>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <maes:AddToDictionary x:TypeArguments="x:String, x:Object" DisplayName="Add to dictionary" sap:VirtualizedContainerService.HintSize="398,138" sap2010:WorkflowViewState.IdRef="AddToDictionary`2_1" Key="MaxRetryNumber">
+          <maes:AddToDictionary.Dictionary>
+            <InArgument x:TypeArguments="scg:IDictionary(x:String, x:Object)">
+              <mca:CSharpValue x:TypeArguments="scg:IDictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_10">out_ConfigDictionary</mca:CSharpValue>
+            </InArgument>
+          </maes:AddToDictionary.Dictionary>
+          <maes:AddToDictionary.Value>
+            <InArgument x:TypeArguments="x:Object">
+              <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_11">3</mca:CSharpValue>
+            </InArgument>
+          </maes:AddToDictionary.Value>
+        </maes:AddToDictionary>
+      </If.Then>
+    </If>
   </Sequence>
 </Activity>

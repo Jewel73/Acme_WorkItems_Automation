@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010 sads" x:Class="LoadWork" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#"
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="SendReport" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
@@ -61,7 +61,7 @@
             <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
         </sco:Collection>
     </TextExpression.ReferencesForImplementation>
-    <Sequence DisplayName="LoadWork" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence DisplayName="SendReport" sap2010:WorkflowViewState.IdRef="Sequence_1">
         <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>

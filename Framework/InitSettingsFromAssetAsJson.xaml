@@ -80,10 +80,9 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
       <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="InitSettingsFromJson" sap:VirtualizedContainerService.HintSize="526,1433" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="InitSettingsFromJson" sap:VirtualizedContainerService.HintSize="526,1214" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="configJson" />
     </Sequence.Variables>
@@ -92,7 +91,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Minimum config structure:&#xA;{&#xA;&quot;OrchestratorQueueName&quot;: &quot;QueueName&quot;,&#xA;&quot;BusinessProcessName&quot;: &quot;BusinessProcessName&quot;,&#xA;&quot;ExceptionScreenshotsFolderPath&quot;: &quot;Exceptions_Screenshots&quot;,&#xA;&quot;MaxRetryNumber&quot;: 3,&#xA;&quot;LogMessage_GetTransactionData&quot;: &quot;Processing Transaction Number: &quot;,&#xA;&quot;LogMessage_GetTransactionDataError&quot;: &quot;Error getting transaction data for Transaction Number: &quot;,&#xA;&quot;LogMessage_Success&quot;: &quot;Transaction Successful.&quot;,&#xA;&quot;LogMessage_BusinessRuleException&quot;: &quot;Business rule exception.&quot;,&#xA;&quot;LogMessage_ApplicationException&quot;: &quot;System exception.&quot;&#xA;}" DisplayName="Get Asset" sap:VirtualizedContainerService.HintSize="484,344" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Minimum config structure:&#xA;{&#xA;&quot;OrchestratorQueueName&quot;: &quot;QueueName&quot;,&#xA;&quot;BusinessProcessName&quot;: &quot;BusinessProcessName&quot;,&#xA;&quot;ExceptionScreenshotsFolderPath&quot;: &quot;Exceptions_Screenshots&quot;&#xA;}" DisplayName="Get Asset" sap:VirtualizedContainerService.HintSize="484,239" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
       <ui:GetRobotAsset.AssetName>
         <InArgument x:TypeArguments="x:String">
           <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">in_ConfigAssetName</mca:CSharpValue>
@@ -192,6 +191,5 @@ out_ConfigDictionary.ContainsKey("ExceptionScreenshotsFolderPath"))</mca:CSharpV
         </maes:AddToDictionary>
       </If.Then>
     </If>
-    <ui:Comment sap:VirtualizedContainerService.HintSize="484,74" sap2010:WorkflowViewState.IdRef="Comment_1" Text="// To be completed for LogMessage config values" />
   </Sequence>
 </Activity>

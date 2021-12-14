@@ -1,0 +1,17 @@
+trigger:
+- none
+
+stages:
+  - stage: Build
+    displayName: Build Package
+    jobs:
+    - job: BuildPackage
+      steps:
+      - task: UiPathPack@2
+        inputs:
+          versionType: 'AutoVersion'
+          projectJsonPath: '$(Build.SourcesDirectory)'
+          outputType: 'Process'
+          orchestratorConnection: 'Orchestrator DEV'
+          outputPath: '$(Build.ArtifactStagingDirectory)'
+          runWorkflowAnalysis: true

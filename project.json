@@ -7,7 +7,8 @@
     "Newtonsoft.Json": "[12.0.3]",
     "UiPath.Excel.Activities": "[2.11.0-preview]",
     "UiPath.System.Activities": "[21.6.1-preview]",
-    "UiPath.UIAutomation.Activities": "[21.6.1-preview]"
+    "UiPath.UIAutomation.Activities": "[21.6.1-preview]",
+    "UiPathTeam.SharePoint.Activities": "[1.7.0]"
   },
   "webServices": [],
   "entitiesStores": [],
@@ -16,7 +17,9 @@
   "projectVersion": "1.0.1",
   "runtimeOptions": {
     "autoDispose": false,
+    "netFrameworkLazyLoading": false,
     "isPausable": true,
+    "isAttended": false,
     "requiresUserInteraction": true,
     "supportsPersistence": false,
     "excludedLoggedData": [
@@ -25,7 +28,8 @@
     ],
     "executionType": "Workflow",
     "readyForPiP": false,
-    "startsInPiP": false
+    "startsInPiP": false,
+    "mustRestoreAllDependencies": false
   },
   "designOptions": {
     "projectProfile": "Developement",

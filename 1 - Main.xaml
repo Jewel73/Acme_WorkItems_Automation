@@ -1,4 +1,3 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.in_RunProcessWork="True" this:Main.in_SkipProcessWorkIfLoadFailed="False" this:Main.in_MaxRunDuration="0" this:Main.in_LoadItemsLimit="0" this:Main.in_RunLoadWork="False" this:Main.in_ConfigAssetName="set default value" this:Main.in_SendReport="False" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_RunProcessWork" Type="InArgument(x:Boolean)" />
@@ -10,7 +9,7 @@
     <x:Property Name="in_SendReport" Type="InArgument(x:Boolean)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>1423,1433</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1500,2532</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -79,10 +78,11 @@
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>OfficeDevPnP.Core</AssemblyReference>
+      <AssemblyReference>UiPathTeam.SharePoint</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Add name of the asset" DisplayName="Main" sap:VirtualizedContainerService.HintSize="393,1390" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Add name of the asset" DisplayName="Main" sap:VirtualizedContainerService.HintSize="558,2467" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:Exception" Name="loadException" />
       <Variable x:TypeArguments="x:Boolean" Default="False" Name="loadFailed" />
@@ -96,8 +96,8 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:Comment sap:VirtualizedContainerService.HintSize="351,55" sap2010:WorkflowViewState.IdRef="Comment_3" Text="// Init settings from JSON asset" />
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="" DisplayName="Invoke workflow InitSettings from JSON" sap:VirtualizedContainerService.HintSize="351,143" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Framework\InitSettingsFromAssetAsJson.xaml">
+    <ui:Comment sap:VirtualizedContainerService.HintSize="516,55" sap2010:WorkflowViewState.IdRef="Comment_3" Text="// Init settings from JSON asset" />
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="" DisplayName="Invoke workflow InitSettings from JSON" sap:VirtualizedContainerService.HintSize="516,143" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Framework\InitSettingsFromAssetAsJson.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="in_ConfigAssetName">
           <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_20">in_ConfigAssetName</mca:CSharpValue>
@@ -114,8 +114,8 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:InvokeWorkflowFile>
-    <ui:Comment sap:VirtualizedContainerService.HintSize="351,74" sap2010:WorkflowViewState.IdRef="Comment_1" Text="// Execute Load Work and Process Work if applicable" />
-    <If DisplayName="If - Run Load Work?" sap:VirtualizedContainerService.HintSize="351,51" sap2010:WorkflowViewState.IdRef="If_1">
+    <ui:Comment sap:VirtualizedContainerService.HintSize="516,74" sap2010:WorkflowViewState.IdRef="Comment_1" Text="// Execute Load Work and Process Work if applicable" />
+    <If DisplayName="If - Run Load Work?" sap:VirtualizedContainerService.HintSize="516,526" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">in_RunLoadWork</mca:CSharpValue>
@@ -123,32 +123,34 @@
       </If.Condition>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <TryCatch DisplayName="Try Catch - Load Work" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+        <TryCatch DisplayName="Try Catch - Load Work" sap:VirtualizedContainerService.HintSize="438,339" sap2010:WorkflowViewState.IdRef="TryCatch_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <TryCatch.Try>
             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Load Work" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="2 - Dispatcher.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:Int32" x:Key="LoadItemsLimit">
-                  <mca:CSharpValue x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">in_LoadItemsLimit</mca:CSharpValue>
+                <InArgument x:TypeArguments="x:Int32" x:Key="in_LoadItemsLimit">0</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_QueueName">
+                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_26">configDictionary["OrchestratorQueueName"].ToString()</mca:CSharpValue>
                 </InArgument>
+                <InArgument x:TypeArguments="x:Boolean" x:Key="in_CleanQueue">False</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
           </TryCatch.Try>
           <TryCatch.Catches>
-            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,321" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
@@ -191,7 +193,7 @@
         </TryCatch>
       </If.Then>
     </If>
-    <If sap2010:Annotation.AnnotationText="Run if RunProcessWork is true and LoadWork did not run OR LoadWork did run and did not fail OR LoadWork did run and fail, but ProcessWork should run anyway." DisplayName="If - Run Process Work?" sap:VirtualizedContainerService.HintSize="351,153" sap2010:WorkflowViewState.IdRef="If_3">
+    <If sap2010:Annotation.AnnotationText="Run if RunProcessWork is true and LoadWork did not run OR LoadWork did run and did not fail OR LoadWork did run and fail, but ProcessWork should run anyway." DisplayName="If - Run Process Work?" sap:VirtualizedContainerService.HintSize="516,660" sap2010:WorkflowViewState.IdRef="If_3">
       <If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_12">in_RunProcessWork &amp;&amp; (!in_RunLoadWork || !loadFailed || (loadFailed &amp;&amp; !in_SkipProcessWorkIfLoadFailed))</mca:CSharpValue>
@@ -199,7 +201,7 @@
       </If.Condition>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
@@ -233,7 +235,7 @@
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="s:Exception" Name="ex" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Assign Exception Details" sap:VirtualizedContainerService.HintSize="304,249" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <Sequence DisplayName="Assign Exception Details" sap:VirtualizedContainerService.HintSize="304,252" sap2010:WorkflowViewState.IdRef="Sequence_4">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -269,7 +271,8 @@
         </Sequence>
       </If.Then>
     </If>
-    <If sap2010:Annotation.AnnotationText="Run Send Report if applicable" DisplayName="If - Run Send Report?" sap:VirtualizedContainerService.HintSize="351,82" sap2010:WorkflowViewState.IdRef="If_7">
+    <ui:Comment sap:VirtualizedContainerService.HintSize="516,55" sap2010:WorkflowViewState.IdRef="Comment_4" Text="// Send report if applicable" />
+    <If sap2010:Annotation.AnnotationText="Run Send Report if applicable" DisplayName="If - Run Send Report?" sap:VirtualizedContainerService.HintSize="516,82" sap2010:WorkflowViewState.IdRef="If_7">
       <If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_25">in_SendReport</mca:CSharpValue>
@@ -297,8 +300,8 @@
         </Sequence>
       </If.Then>
     </If>
-    <ui:Comment sap:VirtualizedContainerService.HintSize="351,55" sap2010:WorkflowViewState.IdRef="Comment_2" Text="// Rethrow an exception if applicable" />
-    <If sap2010:Annotation.AnnotationText="Throw an aggregate exception if both LoadWork and ProcessWork failed." DisplayName="If - Load and Process failed?" sap:VirtualizedContainerService.HintSize="351,108" sap2010:WorkflowViewState.IdRef="If_4">
+    <ui:Comment sap:VirtualizedContainerService.HintSize="516,55" sap2010:WorkflowViewState.IdRef="Comment_2" Text="// Rethrow an exception if applicable" />
+    <If sap2010:Annotation.AnnotationText="Throw an aggregate exception if both LoadWork and ProcessWork failed." DisplayName="If - Load and Process failed?" sap:VirtualizedContainerService.HintSize="516,108" sap2010:WorkflowViewState.IdRef="If_4">
       <If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_14">loadFailed &amp;&amp; processFailed</mca:CSharpValue>
@@ -319,7 +322,7 @@
         </Throw>
       </If.Then>
     </If>
-    <If sap2010:Annotation.AnnotationText="Throw LoadWork exception if failed." DisplayName="If - Load failed?" sap:VirtualizedContainerService.HintSize="351,93" sap2010:WorkflowViewState.IdRef="If_5">
+    <If sap2010:Annotation.AnnotationText="Throw LoadWork exception if failed." DisplayName="If - Load failed?" sap:VirtualizedContainerService.HintSize="516,93" sap2010:WorkflowViewState.IdRef="If_5">
       <If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_16">loadFailed</mca:CSharpValue>
@@ -340,7 +343,7 @@
         </Throw>
       </If.Then>
     </If>
-    <If sap2010:Annotation.AnnotationText="Throw ProcessWork exception if failed." DisplayName="If - Process failed?" sap:VirtualizedContainerService.HintSize="351,93" sap2010:WorkflowViewState.IdRef="If_6">
+    <If sap2010:Annotation.AnnotationText="Throw ProcessWork exception if failed." DisplayName="If - Process failed?" sap:VirtualizedContainerService.HintSize="516,93" sap2010:WorkflowViewState.IdRef="If_6">
       <If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_18">processFailed</mca:CSharpValue>

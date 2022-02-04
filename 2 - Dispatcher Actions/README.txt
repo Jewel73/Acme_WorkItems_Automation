@@ -1,1 +1,0 @@
-There might be no workflows here if logic is simple and is fully contained in 2 - Dispatcher.xaml. Otherwise create as many subfolders are there are process steps for the dispatcher.

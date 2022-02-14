@@ -4,7 +4,7 @@
     <x:Property Name="out_ConfigDictionary" Type="OutArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>1342,1598</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1756,1299</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -80,9 +80,13 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
       <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>OfficeDevPnP.Core</AssemblyReference>
+      <AssemblyReference>UiPathTeam.SharePoint</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="InitSettingsFromJson" sap:VirtualizedContainerService.HintSize="526,1214" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="InitSettingsFromJson" sap:VirtualizedContainerService.HintSize="526,1234" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="configJson" />
     </Sequence.Variables>
@@ -120,10 +124,10 @@
         </InArgument>
       </Assign.Value>
     </Assign>
-    <If sap2010:Annotation.AnnotationText="If one of the mandatory config values is missing in JSON, throw an exception" DisplayName="If - Minimum configuration missing" sap:VirtualizedContainerService.HintSize="484,272" sap2010:WorkflowViewState.IdRef="If_1">
+    <If sap2010:Annotation.AnnotationText="If one of the mandatory config values is missing in JSON, throw an exception" DisplayName="If - Minimum configuration missing" sap:VirtualizedContainerService.HintSize="484,282" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
-          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_13" xml:space="preserve">!(out_ConfigDictionary.ContainsKey("OrchestratorQueueName") &amp;&amp;
+          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_16" xml:space="preserve">!(out_ConfigDictionary.ContainsKey("OrchestratorQueueName") &amp;&amp;
 out_ConfigDictionary.ContainsKey("BusinessProcessName") &amp;&amp;
 out_ConfigDictionary.ContainsKey("ExceptionScreenshotsFolderPath"))</mca:CSharpValue>
         </InArgument>
@@ -144,7 +148,7 @@ out_ConfigDictionary.ContainsKey("ExceptionScreenshotsFolderPath"))</mca:CSharpV
         </Throw>
       </If.Then>
     </If>
-    <If sap2010:Annotation.AnnotationText="" DisplayName="If - Screenshots path is relative" sap:VirtualizedContainerService.HintSize="484,268" sap2010:WorkflowViewState.IdRef="If_3">
+    <If sap2010:Annotation.AnnotationText="" DisplayName="If - Screenshots path is relative" sap:VirtualizedContainerService.HintSize="484,278" sap2010:WorkflowViewState.IdRef="If_3">
       <If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_14">!Path.IsPathRooted(out_ConfigDictionary["ExceptionScreenshotsFolderPath"].ToString())</mca:CSharpValue>

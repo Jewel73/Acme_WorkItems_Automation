@@ -1,0 +1,25 @@
+#-------------------------------------#
+# DO NOT MODIFY ANYTHING IN THIS FILE #
+#-------------------------------------#
+
+trigger:
+- none
+
+pool:
+  vmImage: 'windows-latest'
+
+stages:
+  - stage: Build
+    displayName: Build Package
+    jobs:
+    - job: BuildPackage
+      steps:
+      - task: UiPathPack@2
+        displayName: Build package
+        inputs:
+          versionType: 'AutoVersion'
+          projectJsonPath: '$(Build.SourcesDirectory)'
+          outputType: 'Process'
+          orchestratorConnection: 'Orchestrator DEV'
+          outputPath: '$(Build.ArtifactStagingDirectory)'
+          runWorkflowAnalysis: false

@@ -1,0 +1,57 @@
+#-------------------------------------------------------------#
+#           UPDATE THE VARIABLES BELOW IF NEEDED              #
+#-------------------------------------------------------------#
+
+# e.g. deploymentFolder: Shared/IBC
+variables:
+  deploymentFolder: TEST
+  entryPoint: 1 - Main.xaml
+
+
+
+#-------------------------------------------------------------#
+#               DO NOT MODIFY BELOW THIS LINE                 #
+#-------------------------------------------------------------#
+
+trigger:
+- prod_pipelines
+
+pool:
+  vmImage: 'windows-latest'
+
+stages:
+  - stage: DeployToProd
+    displayName: Build and Deploy to Prod
+    jobs:
+    - job: BuildPackageAndDeploy
+      steps:
+      - task: UiPathPack@2
+        displayName: Package process
+        inputs:
+          versionType: 'AutoVersion'
+          projectJsonPath: '$(Build.SourcesDirectory)'
+          outputType: 'Process'
+          orchestratorConnection: 'Orchestrator PROD'
+          outputPath: '$(Build.ArtifactStagingDirectory)'
+          runWorkflowAnalysis: false
+      - task: UiPathDeploy@2
+        displayName: Deploy process
+        inputs:
+          orchestratorConnection: 'Orchestrator PROD'
+          packagesPath: '$(Build.ArtifactStagingDirectory)'
+          folderName: $(deploymentFolder)
+          entryPoints: $(entryPoint)
+      - task: UiPathAssets@2
+        displayName: Delete assets
+        inputs:
+          orchestratorConnection: 'Orchestrator PROD'
+          folderName: $(deploymentFolder)
+          assetActionType: 'Delete'
+          csvFile: '$(Build.SourcesDirectory)/DevOps/Assets_to_delete.csv'
+      - task: UiPathAssets@2
+        displayName: Deploy assets
+        inputs:
+          orchestratorConnection: 'Orchestrator PROD'
+          folderName: $(deploymentFolder)
+          assetActionType: 'Deploy'
+          csvFile: '$(Build.SourcesDirectory)/DevOps/Assets_to_add_or_update.csv'

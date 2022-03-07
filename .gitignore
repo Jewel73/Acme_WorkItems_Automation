@@ -5,6 +5,4 @@
 *.backup
 *AllDependencies.json
 .local
-
-*.screenshots
 Exception_Screenshots

@@ -31,27 +31,27 @@ stages:
           versionType: 'AutoVersion'
           projectJsonPath: '$(Build.SourcesDirectory)'
           outputType: 'Process'
-          orchestratorConnection: 'Orchestrator DEV'
+          orchestratorConnection: 'Orchestrator TEST'
           outputPath: '$(Build.ArtifactStagingDirectory)'
           runWorkflowAnalysis: false
       - task: UiPathDeploy@2
         displayName: Deploy process
         inputs:
-          orchestratorConnection: 'Orchestrator DEV'
+          orchestratorConnection: 'Orchestrator TEST'
           packagesPath: '$(Build.ArtifactStagingDirectory)'
           folderName: $(deploymentFolder)
           entryPoints: $(entryPoint)
       - task: UiPathAssets@2
         displayName: Delete assets
         inputs:
-          orchestratorConnection: 'Orchestrator DEV'
+          orchestratorConnection: 'Orchestrator TEST'
           folderName: $(deploymentFolder)
           assetActionType: 'Delete'
           csvFile: '$(Build.SourcesDirectory)/DevOps/Assets_to_delete.csv'
       - task: UiPathAssets@2
         displayName: Deploy assets
         inputs:
-          orchestratorConnection: 'Orchestrator DEV'
+          orchestratorConnection: 'Orchestrator TEST'
           folderName: $(deploymentFolder)
           assetActionType: 'Deploy'
           csvFile: '$(Build.SourcesDirectory)/DevOps/Assets_to_add_or_update.csv'

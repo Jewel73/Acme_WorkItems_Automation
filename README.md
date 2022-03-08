@@ -31,7 +31,7 @@ Rules:
 ```
 name,type,value,description
 AssetToAdd1,text,Asset1 value,optional description
-AssetToUpdate,bool,true,
+AssetToUpdate,boolean,true,
 AssetToAdd2,integer,3,another description
 ```
 

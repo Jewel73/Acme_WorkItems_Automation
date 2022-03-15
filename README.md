@@ -1,6 +1,10 @@
 _View this file in DevOps._
 
 
+# .gitignore
+This file lists all unversioned files and folders. If you make any changes to these files or folders, these will not be detected by Git and you will not be able to commit and push them. You should have no need to do so, anyway.
+
+
 # Folder DevOps
 
 ## YAML Files

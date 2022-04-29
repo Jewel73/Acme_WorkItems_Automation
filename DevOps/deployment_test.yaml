@@ -14,7 +14,7 @@ variables:
 #-------------------------------------------------------------#
 
 trigger:
-- test_pipelines
+- test
 
 pool:
   vmImage: 'windows-latest'
@@ -41,17 +41,3 @@ stages:
           packagesPath: '$(Build.ArtifactStagingDirectory)'
           folderName: $(deploymentFolder)
           entryPoints: $(entryPoint)
-      - task: UiPathAssets@2
-        displayName: Delete assets
-        inputs:
-          orchestratorConnection: 'Orchestrator TEST'
-          folderName: $(deploymentFolder)
-          assetActionType: 'Delete'
-          csvFile: '$(Build.SourcesDirectory)/DevOps/Assets_to_delete.csv'
-      - task: UiPathAssets@2
-        displayName: Deploy assets
-        inputs:
-          orchestratorConnection: 'Orchestrator TEST'
-          folderName: $(deploymentFolder)
-          assetActionType: 'Deploy'
-          csvFile: '$(Build.SourcesDirectory)/DevOps/Assets_to_add_or_update.csv'

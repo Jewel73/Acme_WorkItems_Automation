@@ -5,7 +5,7 @@
     <x:Property Name="in_CleanQueue" Type="InArgument(x:Boolean)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>1756,1058</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1030,1058</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -240,7 +240,7 @@
         </InArgument>
       </If.Condition>
       <If.Then>
-        <ui:BulkAddQueueItems TimeoutMS="{x:Null}" DisplayName="Bulk Add Queue Items" sap:VirtualizedContainerService.HintSize="284,132" sap2010:WorkflowViewState.IdRef="BulkAddQueueItems_1">
+        <ui:BulkAddQueueItems TimeoutMS="{x:Null}" DisplayName="Bulk Add Queue Items" FolderPath="Shared" sap:VirtualizedContainerService.HintSize="284,132" sap2010:WorkflowViewState.IdRef="BulkAddQueueItems_1">
           <ui:BulkAddQueueItems.QueueItemsDataTable>
             <InArgument x:TypeArguments="sd:DataTable">
               <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">QueueItemsToAdd</mca:CSharpValue>

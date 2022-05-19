@@ -3,11 +3,12 @@
   "description": "JCI Template based off Robotic Enterprise Framework",
   "main": "1 - Main.xaml",
   "dependencies": {
-    "Email_API": "[1.0.5]",
+    "lib_Email_API": "[2.0.0]",
+    "lib_EmailExchange_API": "[1.0.6]",
     "Microsoft.Activities.Extensions": "[2.0.6.9]",
-    "UiPath.Excel.Activities": "[2.11.0-preview]",
-    "UiPath.System.Activities": "[21.6.1-preview]",
-    "UiPath.UIAutomation.Activities": "[21.6.1-preview]"
+    "UiPath.Excel.Activities": "[2.11.4]",
+    "UiPath.System.Activities": "[22.4.1]",
+    "UiPath.UIAutomation.Activities": "[21.10.5]"
   },
   "webServices": [],
   "entitiesStores": [],

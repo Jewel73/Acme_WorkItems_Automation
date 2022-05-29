@@ -1,11 +1,12 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="LoadWork" this:LoadWork.in_LoadItemsLimit="0" this:LoadWork.in_CleanQueue="False" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="LoadWork" this:LoadWork.in_LoadItemsLimit="0" this:LoadWork.in_CleanQueue="False" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:l="clr-namespace:lib_acme_chrome_ui;assembly=lib_acme_chrome_ui" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_LoadItemsLimit" Type="InArgument(x:Int32)" />
     <x:Property Name="in_QueueName" Type="InArgument(x:String)" />
     <x:Property Name="in_CleanQueue" Type="InArgument(x:Boolean)" />
+    <x:Property Name="in_Properties" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>1030,1058</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>590,2031</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -40,6 +41,12 @@
       <x:String>UiPath.Core.Activities.Orchestrator</x:String>
       <x:String>System.Activities.DynamicUpdate</x:String>
       <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>lib_acme_chrome_ui</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Platform.Triggers</x:String>
+      <x:String>UiPath.Platform.Triggers.Scope</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -80,6 +87,10 @@
       <AssemblyReference>UiPathTeam.SharePoint</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>lib_acme_chrome_ui</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -87,7 +98,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="LoadWork" sap:VirtualizedContainerService.HintSize="526,993" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="LoadWork" sap:VirtualizedContainerService.HintSize="532,1966" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="QueueItemsToAdd" />
       <Variable x:TypeArguments="sd:DataTable" Name="QueueItemsTemp" />
@@ -98,7 +109,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If DisplayName="If - Clean Queue" sap:VirtualizedContainerService.HintSize="484,299" sap2010:WorkflowViewState.IdRef="If_1">
+    <If DisplayName="If - Clean Queue" sap:VirtualizedContainerService.HintSize="490,299" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">in_CleanQueue</mca:CSharpValue>
@@ -129,13 +140,23 @@
         </Sequence>
       </If.Else>
     </If>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Get New Data" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="2 - Dispatcher Actions\\Get Queue Data.xaml">
+    <l:Login_Acme DisplayName="Login Acme" sap:VirtualizedContainerService.HintSize="490,22" sap2010:WorkflowViewState.IdRef="Login_Acme_1">
+      <l:Login_Acme.in_Properties>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+          <mca:CSharpValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_23">in_Properties</mca:CSharpValue>
+        </InArgument>
+      </l:Login_Acme.in_Properties>
+    </l:Login_Acme>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Get New Data" sap:VirtualizedContainerService.HintSize="490,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="2 - Dispatcher Actions\\Get Queue Data.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_QueueItems">
           <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">QueueItemsToAdd</mca:CSharpReference>
         </OutArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_QueueName">
           <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_18">in_QueueName</mca:CSharpValue>
+        </InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Properties">
+          <mca:CSharpValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_21">in_Properties</mca:CSharpValue>
         </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
       <sap:WorkflowViewStateService.ViewState>
@@ -145,7 +166,8 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:InvokeWorkflowFile>
-    <If DisplayName="If - Load Items Limit Set" sap:VirtualizedContainerService.HintSize="484,51" sap2010:WorkflowViewState.IdRef="If_2">
+    <l:Close_Acme_Site DisplayName="Close Acme Site" sap:VirtualizedContainerService.HintSize="490,22" sap2010:WorkflowViewState.IdRef="Close_Acme_Site_1" />
+    <If DisplayName="If - Load Items Limit Set" sap:VirtualizedContainerService.HintSize="490,900" sap2010:WorkflowViewState.IdRef="If_2">
       <If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_17">in_LoadItemsLimit != null &amp;&amp; in_LoadItemsLimit &gt; 0 &amp;&amp; in_LoadItemsLimit &lt; QueueItemsToAdd.Rows.Count</mca:CSharpValue>
@@ -153,8 +175,8 @@
       </If.Condition>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
@@ -164,7 +186,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:InterruptibleDoWhile DisplayName="Do While" sap:VirtualizedContainerService.HintSize="412,521" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+          <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="412,521" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
             <ui:InterruptibleDoWhile.Body>
               <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,356" sap2010:WorkflowViewState.IdRef="Sequence_4">
                 <sap:WorkflowViewStateService.ViewState>
@@ -233,7 +255,7 @@
         </Sequence>
       </If.Else>
     </If>
-    <If DisplayName="If - Any Data to Add" sap:VirtualizedContainerService.HintSize="484,319" sap2010:WorkflowViewState.IdRef="If_3">
+    <If DisplayName="If - Any Data to Add" sap:VirtualizedContainerService.HintSize="490,319" sap2010:WorkflowViewState.IdRef="If_3">
       <If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_19">QueueItemsToAdd.Rows.Count &gt; 0</mca:CSharpValue>

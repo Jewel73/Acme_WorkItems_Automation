@@ -3,18 +3,17 @@
   "description": "JCI Template based off Robotic Enterprise Framework",
   "main": "1 - Main.xaml",
   "dependencies": {
-    "lib_Email_API": "[2.0.0]",
-    "lib_EmailExchange_API": "[1.0.6]",
+    "lib_acme_chrome_ui": "[1.0.3]",
     "Microsoft.Activities.Extensions": "[2.0.6.9]",
-    "UiPath.Excel.Activities": "[2.11.4]",
+    "UiPath.Excel.Activities": "[2.12.3]",
     "UiPath.System.Activities": "[22.4.1]",
-    "UiPath.UIAutomation.Activities": "[21.10.5]"
+    "UiPath.UIAutomation.Activities": "[22.4.4]"
   },
   "webServices": [],
   "entitiesStores": [],
   "schemaVersion": "4.0",
   "studioVersion": "21.4.4.0",
-  "projectVersion": "1.0.2",
+  "projectVersion": "1.0.4",
   "runtimeOptions": {
     "autoDispose": false,
     "netFrameworkLazyLoading": false,
@@ -42,7 +41,7 @@
       "ignoredFiles": []
     },
     "fileInfoCollection": [],
-    "modernBehavior": true
+    "modernBehavior": false
   },
   "expressionLanguage": "CSharp",
   "entryPoints": [

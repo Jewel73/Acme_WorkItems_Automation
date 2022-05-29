@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="SendReport" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:e="clr-namespace:Email_API;assembly=Email_API" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="SendReport" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_BusinessProcessName" Type="InArgument(x:String)" />
     <x:Property Name="in_QueueName" Type="InArgument(x:String)" />
@@ -7,7 +7,7 @@
     <x:Property Name="in_SendBody" Type="InArgument(x:String)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>1030,2206</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>715,2267</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -110,13 +110,13 @@
       <AssemblyReference>UiPathTeam.SharePoint.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="691,2141" sap2010:WorkflowViewState.IdRef="Sequence_18">
+  <Sequence sap:VirtualizedContainerService.HintSize="691,2202" sap2010:WorkflowViewState.IdRef="Sequence_18">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch sap2010:Annotation.AnnotationText="Try to generate and send the report. If it fails, postpone the reporting item." DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="649,2049" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch sap2010:Annotation.AnnotationText="Try to generate and send the report. If it fails, postpone the reporting item." DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="649,2110" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Variables>
         <Variable x:TypeArguments="ui:QueueItem" Name="ReportingItem" />
         <Variable x:TypeArguments="x:String" Name="ReportingFilePath" />
@@ -127,7 +127,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence sap2010:Annotation.AnnotationText="1. Get item from the reporting queue and its timestamp. If none found, default to the last 24 hours.&#xA;2. Get all processed items (Success, Failed, Abandoned) where competion datetime is higher than timestamp.&#xA;3. Generate an Excel file and send it." DisplayName="Generate and Send Report" sap:VirtualizedContainerService.HintSize="611,1791" sap2010:WorkflowViewState.IdRef="Sequence_21">
+        <Sequence sap2010:Annotation.AnnotationText="1. Get item from the reporting queue and its timestamp. If none found, default to the last 24 hours.&#xA;2. Get all processed items (Success, Failed, Abandoned) where competion datetime is higher than timestamp.&#xA;3. Generate an Excel file and send it." DisplayName="Generate and Send Report" sap:VirtualizedContainerService.HintSize="611,1852" sap2010:WorkflowViewState.IdRef="Sequence_21">
           <Sequence.Variables>
             <Variable x:TypeArguments="sd:DataTable" Name="ReportingData" />
             <Variable x:TypeArguments="s:DateTime" Name="ReportingFromDateTime" />
@@ -273,33 +273,13 @@
               </ui:WriteRange.WorkbookPath>
             </ui:WriteRange>
           </Sequence>
-          <e:Send_Email_SMTP in_CCAddress="{x:Null}" in_FromAddress="{x:Null}" in_SenderName="{x:Null}" in_isHTML="{x:Null}" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="569,22" sap2010:WorkflowViewState.IdRef="Send_Email_SMTP_1">
+          <Sequence DisplayName="Email Send Activity Here" sap:VirtualizedContainerService.HintSize="569,83" sap2010:WorkflowViewState.IdRef="Sequence_23">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <e:Send_Email_SMTP.in_Attachments>
-              <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
-                <mca:CSharpValue x:TypeArguments="scg:IEnumerable(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_85">new List&lt;string&gt;(new string[] { ReportingFilePath })</mca:CSharpValue>
-              </InArgument>
-            </e:Send_Email_SMTP.in_Attachments>
-            <e:Send_Email_SMTP.in_Body>
-              <InArgument x:TypeArguments="x:String">
-                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_102">in_SendBody</mca:CSharpValue>
-              </InArgument>
-            </e:Send_Email_SMTP.in_Body>
-            <e:Send_Email_SMTP.in_Subject>
-              <InArgument x:TypeArguments="x:String">
-                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_101">in_SendSubject</mca:CSharpValue>
-              </InArgument>
-            </e:Send_Email_SMTP.in_Subject>
-            <e:Send_Email_SMTP.in_ToAddress>
-              <InArgument x:TypeArguments="x:String">
-                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_100">in_SendTo</mca:CSharpValue>
-              </InArgument>
-            </e:Send_Email_SMTP.in_ToAddress>
-          </e:Send_Email_SMTP>
+          </Sequence>
           <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="569,91" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info">
             <ui:LogMessage.Message>
               <InArgument x:TypeArguments="x:Object">
@@ -388,7 +368,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:Delete sap2010:Annotation.AnnotationText="ContinueOnError = true" ContinueOnError="True" DisplayName="Delete Report" sap:VirtualizedContainerService.HintSize="284,110" sap2010:WorkflowViewState.IdRef="Delete_2">
+          <ui:Delete ResourceFile="{x:Null}" sap2010:Annotation.AnnotationText="ContinueOnError = true" ContinueOnError="True" DisplayName="Delete Report" sap:VirtualizedContainerService.HintSize="284,110" sap2010:WorkflowViewState.IdRef="Delete_2">
             <ui:Delete.Path>
               <InArgument x:TypeArguments="x:String">
                 <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_97">ReportingFilePath</mca:CSharpValue>

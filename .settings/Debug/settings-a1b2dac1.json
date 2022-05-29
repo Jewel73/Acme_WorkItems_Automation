@@ -59,5 +59,9 @@
   "UiPath.UIAutomationNext.Activities.SearchStepsJava.InteractionMode": "HardwareEvents",
   "UiPath.UIAutomationNext.Activities.SearchStepsSAP.InteractionMode": "HardwareEvents",
   "UiPath.UIAutomationNext.Activities.VerifyExecution.VerifyActivities": "False",
-  "UiPath.UIAutomationNext.Activities.Logging.EnableAuditLog": "True"
+  "UiPath.UIAutomationNext.Activities.Logging.EnableAuditLog": "True",
+  "UiPath.UIAutomationNext.Activities.Generic.AlterIfDisabled": "False",
+  "UiPath.UIAutomationNext.Activities.ApplicationCard.RuntimeBrowser": "None",
+  "UiPath.UIAutomationNext.Activities.ApplicationCard.WebDriverMode": "Disabled",
+  "UiPath.UIAutomationNext.Activities.ApplicationCard.WebDriverAutoDownload": "True"
 }

@@ -1,12 +1,13 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="FirstStep" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:l="clr-namespace:lib_acme_chrome_ui;assembly=lib_acme_chrome_ui" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property Name="ItemDetailsUrl" Type="InArgument(x:String)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap:VirtualizedContainerService.HintSize>590,498</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <sco:Collection x:TypeArguments="x:String">
+    <scg:List x:TypeArguments="x:String" Capacity="48">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -31,14 +32,12 @@
       <x:String>System.Windows.Markup</x:String>
       <x:String>System.Linq.Expressions</x:String>
       <x:String>System.Activities.DynamicUpdate</x:String>
-      <x:String>System.Runtime.Serialization</x:String>
-      <x:String>System.Collections.ObjectModel</x:String>
-      <x:String>System.Runtime.InteropServices</x:String>
       <x:String>System.Reflection</x:String>
-      <x:String>lib_acme_chrome_ui</x:String>
-      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
       <x:String>UiPath.UIAutomationCore.Contracts</x:String>
-    </sco:Collection>
+      <x:String>lib_acme_chrome_ui</x:String>
+    </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
     <sco:Collection x:TypeArguments="AssemblyReference">
@@ -79,12 +78,14 @@
       <AssemblyReference>UiPath.Mail</AssemblyReference>
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
       <AssemblyReference>lib_acme_chrome_ui</AssemblyReference>
-      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
       <AssemblyReference>NPOI</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Make sure you rename this workflow to properly reflect the business step it handles. You may use Flowchart or State Machine if needed." DisplayName="FirstStep" sap:VirtualizedContainerService.HintSize="376,433" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Make sure you rename this workflow to properly reflect the business step it handles. You may use Flowchart or State Machine if needed." DisplayName="FirstStep- Navigate To job details page" sap:VirtualizedContainerService.HintSize="376,433" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="ItemId" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -94,21 +95,26 @@
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info">
       <ui:LogMessage.Message>
         <InArgument x:TypeArguments="x:Object">
-          <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">"Initiated step 2."</mca:CSharpValue>
+          <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">"Initiated step 1."</mca:CSharpValue>
         </InArgument>
       </ui:LogMessage.Message>
     </ui:LogMessage>
-    <l:Update_Work_Item DisplayName="Update Work Item" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Update_Work_Item_1">
-      <l:Update_Work_Item.WorkId>
+    <l:WorkItem_Details_Page DisplayName="WorkItem Details Page" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="WorkItem_Details_Page_1">
+      <l:WorkItem_Details_Page.ItemDetailsUrl>
         <InArgument x:TypeArguments="x:String">
-          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">in_TransactionItem.SpecificContent["WIID"].ToString()</mca:CSharpValue>
+          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_9">ItemDetailsUrl</mca:CSharpValue>
         </InArgument>
-      </l:Update_Work_Item.WorkId>
-    </l:Update_Work_Item>
+      </l:WorkItem_Details_Page.ItemDetailsUrl>
+      <l:WorkItem_Details_Page.in_TransactionItem>
+        <InArgument x:TypeArguments="ui:QueueItem">
+          <mca:CSharpValue x:TypeArguments="ui:QueueItem" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">in_TransactionItem</mca:CSharpValue>
+        </InArgument>
+      </l:WorkItem_Details_Page.in_TransactionItem>
+    </l:WorkItem_Details_Page>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info">
       <ui:LogMessage.Message>
         <InArgument x:TypeArguments="x:Object">
-          <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_6">"Completed step 2."</mca:CSharpValue>
+          <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_4">"Completed step 1."</mca:CSharpValue>
         </InArgument>
       </ui:LogMessage.Message>
     </ui:LogMessage>

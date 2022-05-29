@@ -3,7 +3,7 @@
   "description": "JCI Template based off Robotic Enterprise Framework",
   "main": "1 - Main.xaml",
   "dependencies": {
-    "lib_acme_chrome_ui": "[1.0.3]",
+    "lib_acme_chrome_ui": "[1.0.4]",
     "Microsoft.Activities.Extensions": "[2.0.6.9]",
     "UiPath.Excel.Activities": "[2.12.3]",
     "UiPath.System.Activities": "[22.4.1]",
